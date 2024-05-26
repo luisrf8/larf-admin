@@ -1,15 +1,15 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import SLUGS from 'resources/slugs';
 
 function PublicRoutes() {
     return (
-        <Switch>
-            <Route path={SLUGS.login} render={() => <div>login</div>} />
-            <Route path={SLUGS.signup} render={() => <div>signup</div>} />
-            <Route path={SLUGS.forgotPassword} render={() => <div>forgotPassword</div>} />
-            <Redirect to={SLUGS.login} />
-        </Switch>
+        <Routes>
+            <Route path={SLUGS.login} element={<div>login</div>} />
+            <Route path={SLUGS.signup} element={<div>signup</div>} />
+            <Route path={SLUGS.forgotPassword} element={<div>forgotPassword</div>} />
+            <Route path="*" element={<Navigate to={SLUGS.login} />} />
+        </Routes>
     );
 }
 

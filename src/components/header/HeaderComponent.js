@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { string } from 'prop-types';
-import { useHistory } from 'react-router-dom';
-import { Row } from 'simple-flexbox';
+import { useNavigate } from 'react-router-dom';
+import Box from '@mui/material/Box';
 import { createUseStyles, useTheme } from 'react-jss';
 import { SidebarContext } from 'hooks/useSidebar';
 import SLUGS from 'resources/slugs';
@@ -60,7 +60,7 @@ const useStyles = createUseStyles((theme) => ({
 }));
 
 function HeaderComponent() {
-    const { push } = useHistory();
+    const navigate = useNavigate();
     const { currentItem } = useContext(SidebarContext);
     const theme = useTheme();
     const classes = useStyles({ theme });
@@ -99,13 +99,13 @@ function HeaderComponent() {
     }
 
     function onSettingsClick() {
-        push(SLUGS.settings);
+        navigate(SLUGS.settings);
     }
 
     return (
-        <Row className={classes.container} vertical='center' horizontal='space-between'>
+        <Box className={classes.container} sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
             <span className={classes.title}>{title}</span>
-            <Row vertical='center'>
+            <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                 <div className={classes.iconStyles}>
                     <IconSearch />
                 </div>
@@ -140,7 +140,7 @@ function HeaderComponent() {
                 <DropdownComponent
                     label={
                         <>
-                            <span className={classes.name}>Germán Llorente</span>
+                            <span className={classes.name}>LARF</span>
                             <img
                                 src='https://avatars3.githubusercontent.com/u/21162888?s=460&v=4'
                                 alt='avatar'
@@ -163,8 +163,8 @@ function HeaderComponent() {
                         right: -6
                     }}
                 />
-            </Row>
-        </Row>
+            </Box>
+        </Box>
     );
 }
 

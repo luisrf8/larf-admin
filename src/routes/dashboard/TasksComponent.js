@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Row } from 'simple-flexbox';
+import Box from '@mui/material/Box';
 import { createUseStyles, useTheme } from 'react-jss';
 import { IconCheckboxOn, IconCheckboxOff } from 'assets/icons';
 import CardComponent from 'components/cards/CardComponent';
@@ -90,14 +90,14 @@ function TasksComponent(props) {
 
     function renderAddButton() {
         return (
-            <Row
+            <Box
                 horizontal='center'
                 vertical='center'
                 className={[classes.tagStyles, classes.addButton].join(' ')}
                 onClick={onAddButtonClick}
             >
                 +
-            </Row>
+            </Box>
         );
     }
 
@@ -108,12 +108,12 @@ function TasksComponent(props) {
             link='View all'
             subtitle='Today'
             items={[
-                <Row horizontal='space-between' vertical='center'>
+                <Box horizontal='space-between' vertical='center'>
                     <span className={[classes.itemTitle, classes.greyTitle].join(' ')}>
                         Create new task
                     </span>
                     {renderAddButton()}
-                </Row>,
+                </Box>,
                 ...items.map((item, index) => (
                     <TaskComponent
                         classes={classes}
@@ -131,13 +131,13 @@ function TasksComponent(props) {
 function TaskComponent({ classes, index, item = {}, onCheckboxClick, onTagClick }) {
     const { tag = {} } = item;
     return (
-        <Row horizontal='space-between' vertical='center'>
-            <Row>
+        <Box horizontal='space-between' vertical='center'>
+            <Box>
                 <div className={classes.checkboxWrapper} onClick={() => onCheckboxClick(index)}>
                     {item.checked ? <IconCheckboxOn /> : <IconCheckboxOff />}
                 </div>
                 <span className={classes.itemTitle}>{item.title}</span>
-            </Row>
+            </Box>
             <TagComponent
                 backgroundColor={tag.backgroundColor}
                 classes={classes}
@@ -146,13 +146,13 @@ function TaskComponent({ classes, index, item = {}, onCheckboxClick, onTagClick 
                 onClick={onTagClick}
                 text={tag.text}
             />
-        </Row>
+        </Box>
     );
 }
 
 function TagComponent({ backgroundColor, classes, color, index, onClick, text }) {
     return (
-        <Row
+        <Box
             horizontal='center'
             vertical='center'
             style={{ backgroundColor, color }}
@@ -160,7 +160,7 @@ function TagComponent({ backgroundColor, classes, color, index, onClick, text })
             onClick={() => onClick(index)}
         >
             {text}
-        </Row>
+        </Box>
     );
 }
 

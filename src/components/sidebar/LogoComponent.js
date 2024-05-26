@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row } from 'simple-flexbox';
+import Box from '@mui/material/Box';
 import { createUseStyles, useTheme } from 'react-jss';
 import { IconLogo } from 'assets/icons';
 
@@ -20,10 +20,10 @@ function LogoComponent() {
     const theme = useTheme();
     const classes = useStyles({ theme });
     return (
-        <Row className={classes.container} horizontal='center' vertical='center'>
+        <Box className={classes.container} horizontal='center' vertical='center'>
             <IconLogo />
-            <span className={classes.title}>Dashboard Kit</span>
-        </Row>
+            <span className={classes.title}>LARF ADMIN</span>
+        </Box>
     );
 }
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { arrayOf, element, func, number, oneOfType, shape, string } from 'prop-types';
-import { Column } from 'simple-flexbox';
+import Box from '@mui/material/Box';
 import { createUseStyles, useTheme } from 'react-jss';
 import { IconArrowUp } from 'assets/icons';
 
@@ -79,12 +79,12 @@ function DropdownComponent({ label, options, position }) {
     }
 
     return (
-        <Column className={classes.dropdownContainer}>
+        <Box className={classes.dropdownContainer}>
             <button className={classes.dropdownButton} onClick={onDropdownClick}>
                 {label}
             </button>
             {userMenuOpen && (
-                <Column className={classes.dropdownItemsContainer}>
+                <Box className={classes.dropdownItemsContainer}>
                     {options.map((option, index) => (
                         <button
                             key={`option-${index}`}
@@ -99,9 +99,9 @@ function DropdownComponent({ label, options, position }) {
                             )}
                         </button>
                     ))}
-                </Column>
+                </Box>
             )}
-        </Column>
+        </Box>
     );
 }
 

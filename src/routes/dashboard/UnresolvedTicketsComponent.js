@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row } from 'simple-flexbox';
+import Box from '@mui/material/Box';
 import { createUseStyles, useTheme } from 'react-jss';
 import CardComponent from 'components/cards/CardComponent';
 
@@ -19,10 +19,10 @@ function UnresolvedTicketsComponent({ containerStyles }) {
 
     function renderStat(title, value) {
         return (
-            <Row horizontal='space-between' vertical='center'>
+            <Box horizontal='space-between' vertical='center'>
                 <span className={classes.itemTitle}>{title}</span>
                 <span className={[classes.itemTitle, classes.itemValue].join(' ')}>{value}</span>
-            </Row>
+            </Box>
         );
     }
 

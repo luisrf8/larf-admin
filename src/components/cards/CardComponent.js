@@ -1,5 +1,5 @@
 import React from 'react';
-import { Column, Row } from 'simple-flexbox';
+import Box from '@mui/material/Box';
 import { createUseStyles, useTheme } from 'react-jss';
 
 const useStyles = createUseStyles((theme) => ({
@@ -54,38 +54,38 @@ function CardComponent(props) {
     const { title, link, subtitle, subtitleTwo, items, containerStyles } = props;
     function renderItem(item, index) {
         return (
-            <Column
+            <Box
                 className={classes.itemContainer}
                 key={`item-${index}`}
                 breakpoints={{ 426: classes.itemContainerMobile }}
             >
                 {item}
-            </Column>
+            </Box>
         );
     }
 
     return (
-        <Column
+        <Box
             flexGrow={1}
             className={[classes.container, containerStyles].join(' ')}
             breakpoints={{ 426: classes.containerMobile }}
         >
-            <Row horizontal='space-between'>
-                <Column>
+            <Box horizontal='space-between'>
+                <Box>
                     <span className={classes.title}>{title}</span>
-                    <Row style={{ marginTop: 8, marginBottom: 16 }}>
+                    <Box style={{ marginTop: 8, marginBottom: 16 }}>
                         <span className={classes.subtitle}>{subtitle}</span>
                         {subtitleTwo && (
                             <span className={[classes.subtitle, classes.subtitle2].join(' ')}>
                                 {subtitleTwo}
                             </span>
                         )}
-                    </Row>
-                </Column>
+                    </Box>
+                </Box>
                 <span className={classes.link}>{link}</span>
-            </Row>
+            </Box>
             {items.map(renderItem)}
-        </Column>
+        </Box>
     );
 }
 

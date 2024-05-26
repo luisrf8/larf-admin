@@ -1,5 +1,5 @@
 import React from 'react';
-import { Column } from 'simple-flexbox';
+import Box from '@mui/material/Box';
 import { createUseStyles, useTheme } from 'react-jss';
 
 const useStyles = createUseStyles((theme) => ({
@@ -39,10 +39,10 @@ function MiniCardComponent({ className = '', title, value }) {
     const classes = useStyles({ theme });
     const composedClassName = [classes.container, className].join(' ');
     return (
-        <Column flexGrow={1} className={composedClassName} horizontal='center' vertical='center'>
+        <Box flexGrow={1} className={composedClassName} horizontal='center' vertical='center'>
             <span className={classes.title}>{title}</span>
             <span className={classes.value}>{value}</span>
-        </Column>
+        </Box>
     );
 }
 

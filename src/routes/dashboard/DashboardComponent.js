@@ -1,5 +1,5 @@
 import React from 'react';
-import { Column, Row } from 'simple-flexbox';
+import Box from '@mui/material/Box';
 import { createUseStyles } from 'react-jss';
 import MiniCardComponent from 'components/cards/MiniCardComponent';
 import TodayTrendsComponent from './TodayTrendsComponent';
@@ -48,20 +48,16 @@ const useStyles = createUseStyles({
 function DashboardComponent() {
     const classes = useStyles();
     return (
-        <Column>
-            <Row
+        <Box>
+            <Box
                 className={classes.cardsContainer}
                 wrap
                 flexGrow={1}
                 horizontal='space-between'
                 breakpoints={{ 768: 'column' }}
             >
-                <Row
-                    className={classes.cardRow}
-                    wrap
-                    flexGrow={1}
-                    horizontal='space-between'
-                    breakpoints={{ 384: 'column' }}
+                <Box
+                    sx={{display: 'flex', justifyContent: 'space-around'}}                    
                 >
                     <MiniCardComponent
                         className={classes.miniCardContainer}
@@ -73,13 +69,10 @@ function DashboardComponent() {
                         title='Overdue'
                         value='16'
                     />
-                </Row>
-                <Row
+                </Box>
+                <Box
                     className={classes.cardRow}
-                    wrap
-                    flexGrow={1}
-                    horizontal='space-between'
-                    breakpoints={{ 384: 'column' }}
+                    sx={{display: 'flex', justifyContent: 'space-around'}}                    
                 >
                     <MiniCardComponent
                         className={classes.miniCardContainer}
@@ -91,20 +84,20 @@ function DashboardComponent() {
                         title='On hold'
                         value='64'
                     />
-                </Row>
-            </Row>
+                </Box>
+            </Box>
             <div className={classes.todayTrends}>
                 <TodayTrendsComponent />
             </div>
-            <Row
-                horizontal='space-between'
+            <Box
+                sx={{display: 'flex', justifyContent: 'space-between'}}                    
                 className={classes.lastRow}
                 breakpoints={{ 1024: 'column' }}
             >
                 <UnresolvedTicketsComponent containerStyles={classes.unresolvedTickets} />
                 <TasksComponent containerStyles={classes.tasks} />
-            </Row>
-        </Column>
+            </Box>
+        </Box>
     );
 }
 

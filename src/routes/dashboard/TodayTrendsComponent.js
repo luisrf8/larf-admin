@@ -1,7 +1,7 @@
 import React from 'react';
-import { Column, Row } from 'simple-flexbox';
+import Box from '@mui/material/Box';
 import { createUseStyles, useTheme } from 'react-jss';
-import LineChart from 'react-svg-line-chart';
+// import LineChart from 'react-svg-line-chart';
 
 const data = [];
 
@@ -81,16 +81,16 @@ function TodayTrendsComponent() {
 
     function renderLegend(color, title) {
         return (
-            <Row vertical='center'>
+            <Box vertical='center'>
                 <div style={{ width: 16, border: '2px solid', borderColor: color }}></div>
                 <span className={classes.legendTitle}>{title}</span>
-            </Row>
+            </Box>
         );
     }
 
     function renderStat(title, value) {
         return (
-            <Column
+            <Box
                 flexGrow={1}
                 className={classes.statContainer}
                 vertical='center'
@@ -98,52 +98,57 @@ function TodayTrendsComponent() {
             >
                 <span className={classes.statTitle}>{title}</span>
                 <span className={classes.statValue}>{value}</span>
-            </Column>
+            </Box>
         );
     }
 
     return (
-        <Row
+        <Box
             flexGrow={1}
             className={classes.container}
-            horizontal='center'
+            sx={{display: 'flex', justifyContent: 'space-between'}}                    
             breakpoints={{ 1024: 'column' }}
         >
-            <Column
+            <Box
                 wrap
                 flexGrow={7}
                 flexBasis='735px'
                 className={classes.graphSection}
+                sx={{display: 'flex', justifyContent: 'space-between'}}                    
                 breakpoints={{ 1024: { width: 'calc(100% - 48px)', flexBasis: 'auto' } }}
             >
-                <Row wrap horizontal='space-between'>
-                    <Column>
+                <Box wrap                 sx={{display: 'flex', justifyContent: 'space-between'}}                    
+>
+                    <Box 
+                sx={{display: 'flex', justifyContent: 'space-between'}}                    
+                >
                         <span className={classes.graphTitle}>Today’s trends</span>
                         <span className={classes.graphSubtitle}>as of 25 May 2019, 09:41 PM</span>
-                    </Column>
+                    </Box>
                     {renderLegend(theme.color.lightBlue, 'Today')}
-                </Row>
+                </Box>
                 <div className={classes.graphContainer}>
-                    <LineChart
+                    {/* <LineChart
                         data={data}
                         viewBoxWidth={500}
                         pointsStrokeColor={theme.color.lightBlue}
                         areaColor={theme.color.lightBlue}
                         areaVisible={true}
-                    />
+                    /> */}
                 </div>
-            </Column>
-            <Column className={classes.separator} breakpoints={{ 1024: { display: 'none' } }}>
+            </Box>
+            <Box  
+            className={classes.separator} breakpoints={{ 1024: { display: 'none' } }}>
                 <div />
-            </Column>
-            <Column flexGrow={3} flexBasis='342px' breakpoints={{ 1024: classes.stats }}>
+            </Box>
+            <Box flexGrow={3} flexBasis='342px' breakpoints={{ 1024: classes.stats }}>
                 {renderStat('Resolved', '449')}
                 {renderStat('Received', '426')}
                 {renderStat('Average first response time', '33m')}
                 {renderStat('Average response time', '3h 8m')}
                 {renderStat('Resolution within SLA', '94%')}
-            </Column>
-        </Row>
+            </Box>
+        </Box>
     );
 }
 

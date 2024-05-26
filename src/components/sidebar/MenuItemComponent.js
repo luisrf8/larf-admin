@@ -1,8 +1,8 @@
 import React from 'react';
 import { any, arrayOf, func, string } from 'prop-types';
-import { Column, Row } from 'simple-flexbox';
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
 import { createUseStyles, useTheme } from 'react-jss';
-import CollapsibleContent from 'components/collapsible/CollapsibleContent';
 import { useSidebar } from 'hooks/useSidebar';
 
 const useStyles = createUseStyles({
@@ -12,6 +12,7 @@ const useStyles = createUseStyles({
     container: {
         display: 'flex',
         height: 56,
+        alignItems: 'center',
         cursor: 'pointer',
         '&:hover': {
             backgroundColor: ({ theme }) => theme.color.paleBlueTransparent
@@ -53,29 +54,29 @@ function MenuItemComponent({ children, icon: Icon, id, items = [], level = 1, on
     }
 
     return (
-        <Column key={id} className={classNameColumn}>
-            <Row vertical='center' onClick={onItemClicked} className={classNameContainer}>
+        <Box key={id} className={classNameColumn}>
+            <Box vertical='center' onClick={onItemClicked} className={classNameContainer}>
                 <Icon fill={iconColor} opacity={!isActive && '0.4'} />
                 <span className={classes.title}>{title}</span>
-            </Row>
+            </Box>
             {isCollapsible && (
-                <CollapsibleContent expanded={isExpanded}>
-                    {children.map((child) => child.type({ ...child.props }))}
-                </CollapsibleContent>
+                <Collapse in={isExpanded}>
+                    {children.map((child) => (
+                        <child.type key={child.props.id} {...child.props} />
+                    ))}
+                </Collapse>
             )}
-        </Column>
+        </Box>
     );
 }
 
-MenuItemComponent.defaultProps = {};
-
 MenuItemComponent.propTypes = {
     children: any,
-    icon: func,
-    id: string,
+    icon: func.isRequired,
+    id: string.isRequired,
     onClick: func,
     items: arrayOf(string),
-    title: string
+    title: string.isRequired
 };
 
 export default MenuItemComponent;

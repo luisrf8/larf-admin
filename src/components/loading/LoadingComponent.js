@@ -1,6 +1,7 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { Column } from 'simple-flexbox';
+import Box from '@mui/material/Box';
+
 
 const useStyles = createUseStyles({
     '@keyframes loadingSpin': {
@@ -58,10 +59,10 @@ function LoadingComponent({
     return (
         <div style={{ position: 'relative', height, width }}>
             {loading && (
-                <Column className={classes.container} horizontal='center' vertical='center'>
+                <Box className={classes.container} horizontal='center' vertical='center'>
                     <div className={classes.loading}></div>
                     {!hideText && <span className={classes.loadingSpan}>Loading...</span>}
-                </Column>
+                </Box>
             )}
             {children || <div />}
         </div>

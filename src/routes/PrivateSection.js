@@ -1,6 +1,6 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { Column, Row } from 'simple-flexbox';
+import Box from '@mui/material/Box';
 import { SidebarComponent, SidebarContext } from 'components/sidebar';
 import HeaderComponent from 'components/header/HeaderComponent';
 import PrivateRoutes from './PrivateRoutes';
@@ -28,15 +28,15 @@ function PrivateSection() {
 
     return (
         <SidebarContext>
-            <Row className={classes.container}>
+            <Box className={classes.container}>
                 <SidebarComponent />
-                <Column flexGrow={1} className={classes.mainBlock}>
+                <Box flexGrow={1} className={classes.mainBlock}>
                     <HeaderComponent />
                     <div className={classes.contentBlock}>
                         <PrivateRoutes />
                     </div>
-                </Column>
-            </Row>
+                </Box>
+            </Box>
         </SidebarContext>
     );
 }

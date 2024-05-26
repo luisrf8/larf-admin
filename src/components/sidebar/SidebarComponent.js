@@ -1,6 +1,6 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import SLUGS from 'resources/slugs';
 import {
     IconAgents,
@@ -26,19 +26,23 @@ const useStyles = createUseStyles({
         opacity: 0.06
     }
 });
-
+const style = {
+    display: 'flex', 
+    alignItems: 'center',
+    justifyContent: 'center'
+}
 function SidebarComponent() {
-    const { push } = useHistory();
+    const navigate = useNavigate();
     const theme = useTheme();
     const classes = useStyles({ theme });
     const isMobile = window.innerWidth <= 1080;
 
     async function logout() {
-        push(SLUGS.login);
+        navigate(SLUGS.login);
     }
 
     function onClick(slug, parameters = {}) {
-        push(convertSlugToUrl(slug, parameters));
+        navigate(convertSlugToUrl(slug, parameters));
     }
 
     return (
@@ -50,6 +54,7 @@ function SidebarComponent() {
                 id={SLUGS.dashboard}
                 title='Dashboard'
                 icon={IconSubscription}
+                sx={style}
                 onClick={() => onClick(SLUGS.dashboard)}
             />
             <MenuItem
@@ -145,7 +150,6 @@ function SidebarComponent() {
                 icon={IconSettings}
                 onClick={() => onClick(SLUGS.settings)}
             />
-
             <MenuItem id='logout' title='Logout' icon={IconLogout} onClick={logout} />
         </Menu>
     );
